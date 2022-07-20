@@ -64,12 +64,15 @@ const initialGameState = {
   },
 };
 
+const playerUUID = short().new();
+
 const initialState = {
   gamePhase: PREGAME,
   battleshipCells: [],
   gameState: initialGameState,
-  isWinner: true,
   websocket: null,
+  playerUUID,
+  winnerUUID: "",
 };
 
 const isAdjacent = (first, second) => {
@@ -109,14 +112,17 @@ const createState = () => {
       }),
     startGame: () =>
       update((state) => {
-        const playerUUID = short().new();
-        const event = ["start", playerUUID, [state.battleshipCells]];
+        const event = {
+          Message: "start",
+          PlayerId: playerUUID,
+          Battleships: state.battleshipCells,
+        };
         sendEvent(state.websocket, event);
         return { ...state, gamePhase: GAME };
       }),
-    declareWinner: (isWinner) =>
+    declareWinner: (uuid) =>
       update((state) => {
-        return { ...state, gamePhase: WINNER, isWinner };
+        return { ...state, gamePhase: WINNER, winnerUUID: uuid };
       }),
     reset: () => set(initialState),
     setWebsocket: (websocket) => update((state) => ({ ...state, websocket })),

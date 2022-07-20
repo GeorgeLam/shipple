@@ -10,7 +10,7 @@
     state = value;
   });
 
-  if (state.isWinner) {
+  if (state.winnerUUID === state.playerUUID) {
     fanfare.play();
     jsConfetti.addConfetti({
       emojis: ["💦", "🏴‍☠️", "💥", "🚢", "💫", "🍆"],
@@ -19,7 +19,7 @@
 </script>
 
 <div>
-  {#if state.isWinner}
+  {#if state.winnerUUID === state.playerUUID}
     <h2 class="winning">YOU WIN!</h2>
   {:else}
     <h2 class="loser">You lose, sucker</h2>

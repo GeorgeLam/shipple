@@ -13,7 +13,7 @@
   export let coordinate;
 
   const clickCell = (coordinate) => {
-    const event = ["fire", coordinate];
+    const event = { Message: "fire", Coordinate: coordinate };
     sendEvent(state.websocket, event);
   };
 
