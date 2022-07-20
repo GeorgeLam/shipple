@@ -10,7 +10,7 @@ const initialState = {
   gamePhase: PREGAME,
   battleshipCells: [],
   gameState: null,
-  isWinner: false,
+  isWinner: true,
 };
 
 const isAdjacent = (first, second) => {

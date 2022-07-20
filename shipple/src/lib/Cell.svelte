@@ -7,8 +7,6 @@
     state = value;
   });
 
-  console.log(state);
-
   export let coordinate;
 
   const clickCell = (coordinate) => {

@@ -27,6 +27,7 @@
       <Grid />
     {/if}
   </div>
+  <button class="reset" on:click={stateReducer.reset}>Play again</button>
 </main>
 
 <style>
@@ -34,5 +35,9 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+  .reset {
+    background-color: #ecf0f1;
+    margin-top: 40px;
   }
 </style>

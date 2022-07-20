@@ -2,6 +2,7 @@
   import { stateReducer } from "./stores.js";
   import JSConfetti from "js-confetti";
 
+  let fanfare = new Audio("src/assets/winning_fanfare.wav");
   const jsConfetti = new JSConfetti();
   let state;
 
@@ -10,6 +11,7 @@
   });
 
   if (state.isWinner) {
+    fanfare.play();
     jsConfetti.addConfetti({
       emojis: ["💦", "🏴‍☠️", "💥", "🚢", "💫", "🍆"],
     });
