@@ -1,4 +1,7 @@
 import { writable } from "svelte/store";
+import short from "short-uuid";
+
+import { sendEvent } from "./socket.js";
 
 // Game phases
 export const PREGAME = "PREGAME";
@@ -6,10 +9,65 @@ export const READY_TO_PLAY = "READY_TO_PLAY";
 export const GAME = "GAME";
 export const WINNER = "WINNER";
 
+const initialGameState = {
+  player1: {
+    1: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+    2: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+    3: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+    4: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+  },
+  player2: {
+    1: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+    2: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+    3: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+    4: {
+      1: { hit: false, ship: false },
+      2: { hit: false, ship: false },
+      3: { hit: false, ship: false },
+      4: { hit: false, ship: false },
+    },
+  },
+};
+
 const initialState = {
   gamePhase: PREGAME,
   battleshipCells: [],
-  gameState: null,
+  gameState: initialGameState,
   isWinner: true,
   websocket: null,
 };
@@ -45,10 +103,16 @@ const createState = () => {
           return state;
         }
       }),
+    handleUpdatedGameState: (gameState) =>
+      update((state) => {
+        return { ...state, gameState };
+      }),
     startGame: () =>
       update((state) => {
-        // TODO: initialise websocket
-        return { ...state, gamePhase: WINNER };
+        const playerUUID = short().new();
+        const event = ["start", playerUUID, [state.battleshipCells]];
+        sendEvent(state.websocket, event);
+        return { ...state, gamePhase: GAME };
       }),
     declareWinner: (isWinner) =>
       update((state) => {

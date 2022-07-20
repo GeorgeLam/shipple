@@ -1,7 +1,7 @@
 <script>
   import Cell from "./Cell.svelte";
 
-  export let state;
+  export let status;
   export let title;
 
   const GRID_SIZE = 4;
@@ -19,7 +19,7 @@
   <h2>{title}</h2>
   <div class="grid">
     {#each grid as cell}
-      <Cell coordinate={cell} state={state[cell[0]][cell[1]]} />
+      <Cell coordinate={cell} status={status[cell[0]][cell[1]]} />
     {/each}
   </div>
 </div>

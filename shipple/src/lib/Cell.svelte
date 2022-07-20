@@ -4,6 +4,7 @@
   import { sendEvent } from "./socket.js";
 
   let state;
+  export let status;
 
   const unsubscribe = stateReducer.subscribe((value) => {
     state = value;
@@ -48,6 +49,10 @@
 </script>
 
 <div class="cell" on:click={() => clickHandler(coordinate)}>
+  <h1>
+    {#if status.hit && status.ship}💥{/if}
+    {#if status.hit && !status.ship}💦{/if}
+  </h1>
   {#if state.battleshipCells.includes(coordinate)}
     <div class={`ship ${getClasses(coordinate, state.battleshipCells)}`} />
   {/if}
