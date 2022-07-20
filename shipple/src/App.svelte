@@ -95,7 +95,7 @@
     {/if}
   </div>
 
-  <button class="reset" on:click={stateReducer.reset}>Play again</button>
+  <button class="reset" on:click={() => location.reload()}>Play again</button>
 </main>
 
 <style>

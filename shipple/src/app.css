@@ -1,5 +1,5 @@
 :root {
-  font-family: 'Press Start 2P', Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Press Start 2P", Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -30,12 +30,12 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background-color: blanchedalmond;
+  background-image: url("https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/a97bfdc95255085.png");
 }
 
 h1 {
   font-size: 3.2em;
-  line-height: 1.1;
+  line-height: 1;
 }
 
 .card {
@@ -45,7 +45,6 @@ h1 {
 #app {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 

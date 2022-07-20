@@ -65,6 +65,7 @@ const initialGameState = {
 };
 
 const playerUUID = short().new();
+// const playerUUID = "bongo";
 
 const initialState = {
   gamePhase: PREGAME,

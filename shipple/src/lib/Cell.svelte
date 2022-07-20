@@ -70,6 +70,11 @@
     box-sizing: border-box;
     position: relative;
   }
+
+  .cell h1 {
+    line-height: 0.5 !important;
+  }
+
   .ship {
     width: 40px;
     height: 40px;
