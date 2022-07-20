@@ -63,7 +63,7 @@
 
 <style>
   .cell {
-    background-color: #ecf0f1;
+    background-color: dodgerblue;
     width: 25%;
     height: 25%;
     border: 1px solid white;

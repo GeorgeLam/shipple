@@ -22,6 +22,7 @@
   .container {
     margin-top: 63px;
     box-sizing: border-box;
+    padding: 10px;
     background-color: #f4aef5;
     height: 400px;
     width: 400px;
@@ -41,6 +42,6 @@
   }
   .ready-button {
     background-color: aquamarine;
-    width: 150px;
+    width: 200px;
   }
 </style>
