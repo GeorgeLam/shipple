@@ -95,7 +95,11 @@
     {/if}
   </div>
 
-  <button class="reset" on:click={() => location.reload()}>Play again</button>
+  <button
+    class="reset"
+    disabled={$stateReducer.gamePhase !== WINNER}
+    on:click={() => location.reload()}>Play again</button
+  >
 </main>
 
 <style>
