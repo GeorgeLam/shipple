@@ -1,4 +1,5 @@
 <script>
+  import Explosion from "./Explosion.svelte";
   import { stateReducer, PREGAME } from "./stores.js";
 
   let state;
@@ -40,12 +41,17 @@
 
   const clickHandler =
     state.gamePhase === PREGAME ? stateReducer.placeShip : clickCell;
+
+  const hit = false;
 </script>
 
 <div class="cell" on:click={() => clickHandler(coordinate)}>
-  {coordinate}
+  <!-- {coordinate} -->
   {#if state.battleshipCells.includes(coordinate)}
     <div class={`ship ${getClasses(coordinate, state.battleshipCells)}`} />
+  {/if}
+  {#if hit}
+    <Explosion />
   {/if}
 </div>
 
@@ -82,10 +88,12 @@
   .left {
     transform: rotate(-90deg);
     right: 0;
+    top: 20px;
   }
   .right {
     transform: rotate(90deg);
     left: 0;
+    top: 20px;
   }
   .down {
     transform: rotate(180deg);
