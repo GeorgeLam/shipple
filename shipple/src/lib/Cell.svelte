@@ -45,19 +45,20 @@
   const clickHandler =
     state.gamePhase === PREGAME ? stateReducer.placeShip : clickCell;
 
-  const hit = false;
+  $: hit = status.hit && status.ship;
 </script>
 
 <div class="cell" on:click={() => clickHandler(coordinate)}>
-  <h1>
-    {#if status.hit && status.ship}💥{/if}
-    {#if status.hit && !status.ship}💦{/if}
-  </h1>
+  {#if status.hit && status.ship}<h1>💥</h1>{/if}
+  {#if status.hit && !status.ship}<h1>💦</h1>{/if}
+  {#if hit}<Explosion />{/if}
+
   {#if state.battleshipCells.includes(coordinate)}
-    <div class={`ship ${getClasses(coordinate, state.battleshipCells)}`} />
-  {/if}
-  {#if hit}
-    <Explosion />
+    <div
+      class={`ship ${getClasses(coordinate, state.battleshipCells)} ${
+        status.hit && "hit"
+      }`}
+    />
   {/if}
 </div>
 
