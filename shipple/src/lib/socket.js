@@ -7,9 +7,9 @@ export const initialiseWebsocket = () => {
 
   console.log("Hello, front-end has connected to WS");
 
-  stateReducer.websocket.set(ws);
+  stateReducer.setWebsocket(ws);
 };
 
-const sendEvent = (ws, event) => {
+export const sendEvent = (ws, event) => {
   ws.send(event);
 };

@@ -25,7 +25,7 @@ const isAdjacent = (first, second) => {
 };
 
 const createState = () => {
-  const { subscribe, set, update, websocket } = writable(initialState);
+  const { subscribe, set, update } = writable(initialState);
 
   return {
     subscribe,
@@ -55,7 +55,7 @@ const createState = () => {
         return { ...state, gamePhase: WINNER, isWinner };
       }),
     reset: () => set(initialState),
-    websocket,
+    setWebsocket: (websocket) => update((state) => ({ ...state, websocket })),
   };
 };
 

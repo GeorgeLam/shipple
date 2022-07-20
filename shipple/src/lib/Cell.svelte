@@ -1,6 +1,7 @@
 <script>
   import Explosion from "./Explosion.svelte";
   import { stateReducer, PREGAME } from "./stores.js";
+  import { sendEvent } from "./socket.js";
 
   let state;
 
@@ -11,7 +12,8 @@
   export let coordinate;
 
   const clickCell = (coordinate) => {
-    alert(coordinate);
+    const event = ["fire", coordinate];
+    sendEvent(state.websocket, event);
   };
 
   const getClasses = (coordinate, selectedCells) => {
