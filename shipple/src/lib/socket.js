@@ -26,5 +26,5 @@ export const initialiseWebsocket = () => {
 };
 
 export const sendEvent = (ws, event) => {
-  ws.send(event);
+  ws.send(JSON.stringify(event));
 };

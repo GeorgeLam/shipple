@@ -72,61 +72,6 @@
       },
     },
   };
-
-  const mockState2 = {
-    player1: {
-      "1": {
-        "1": { hit: true, ship: false },
-        "2": { hit: true, ship: true },
-        "3": { hit: true, ship: true },
-        "4": { hit: true, ship: false },
-      },
-      "2": {
-        "1": { hit: true, ship: false },
-        "2": { hit: false, ship: false },
-        "3": { hit: false, ship: false },
-        "4": { hit: false, ship: false },
-      },
-      "3": {
-        "1": { hit: true, ship: false },
-        "2": { hit: false, ship: false },
-        "3": { hit: false, ship: false },
-        "4": { hit: false, ship: false },
-      },
-      "4": {
-        "1": { hit: true, ship: false },
-        "2": { hit: false, ship: false },
-        "3": { hit: false, ship: false },
-        "4": { hit: false, ship: false },
-      },
-    },
-    player2: {
-      "1": {
-        "1": { hit: true, ship: true },
-        "2": { hit: false, ship: true },
-        "3": { hit: false, ship: true },
-        "4": { hit: false, ship: false },
-      },
-      "2": {
-        "1": { hit: true, ship: false },
-        "2": { hit: false, ship: false },
-        "3": { hit: false, ship: false },
-        "4": { hit: false, ship: false },
-      },
-      "3": {
-        "1": { hit: true, ship: false },
-        "2": { hit: false, ship: false },
-        "3": { hit: false, ship: false },
-        "4": { hit: false, ship: false },
-      },
-      "4": {
-        "1": { hit: true, ship: false },
-        "2": { hit: false, ship: false },
-        "3": { hit: false, ship: false },
-        "4": { hit: false, ship: false },
-      },
-    },
-  };
 </script>
 
 <main>
@@ -151,11 +96,6 @@
   </div>
 
   <button class="reset" on:click={stateReducer.reset}>Play again</button>
-  <button
-    class="reset"
-    on:click={() => stateReducer.handleUpdatedGameState(mockState2)}
-    >Update state</button
-  >
 </main>
 
 <style>
