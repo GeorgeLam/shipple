@@ -15,6 +15,31 @@
     alert(coordinate);
   };
 
+  const getClasses = (coordinate, selectedCells) => {
+    if (selectedCells[0] == undefined || selectedCells[1] === undefined) {
+      return "";
+    }
+    const bow = selectedCells[0];
+    const stern = selectedCells[1];
+    if (coordinate === bow) {
+      if (coordinate[0] === stern[0]) {
+        // above or below
+        return coordinate[1] < stern[1] ? "bow up" : "bow down";
+      } else {
+        // left or right
+        return coordinate[0] < stern[0] ? "bow left" : "bow right";
+      }
+    } else if (coordinate === stern) {
+      if (coordinate[0] === bow[0]) {
+        // above or below
+        return coordinate[1] < bow[1] ? "stern up" : "stern down";
+      } else {
+        // left or right
+        return coordinate[0] < bow[0] ? "stern left" : "stern right";
+      }
+    }
+  };
+
   const clickHandler =
     state.gamePhase === PREGAME ? stateReducer.placeShip : clickCell;
 </script>
@@ -22,7 +47,7 @@
 <div class="cell" on:click={() => clickHandler(coordinate)}>
   {coordinate}
   {#if state.battleshipCells.includes(coordinate)}
-    SHIP
+    <div class={`ship ${getClasses(coordinate, state.battleshipCells)}`} />
   {/if}
 </div>
 
@@ -33,5 +58,44 @@
     height: 25%;
     border: 1px solid white;
     box-sizing: border-box;
+    position: relative;
+  }
+  .ship {
+    width: 40px;
+    height: 40px;
+    background-color: coral;
+    position: absolute;
+    border-radius: 50%;
+    left: 30px;
+    top: 30px;
+  }
+  .bow,
+  .stern {
+    height: 60px;
+    left: unset;
+    top: unset;
+  }
+  .bow {
+    border-radius: 50% 50% 0 0;
+  }
+  .stern {
+    border-radius: 10px 10px 0 0;
+  }
+  .left {
+    transform: rotate(-90deg);
+    right: 0;
+  }
+  .right {
+    transform: rotate(90deg);
+    left: 0;
+  }
+  .down {
+    transform: rotate(180deg);
+    top: 0;
+    left: 30px;
+  }
+  .up {
+    bottom: 0;
+    left: 30px;
   }
 </style>
