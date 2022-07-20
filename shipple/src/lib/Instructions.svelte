@@ -9,7 +9,7 @@
 </script>
 
 <div class="container">
-  <h2>Welcome</h2>
+  <h2>Welcome!</h2>
   <p>Select two adjacent cells to place your ship</p>
   <button
     class="ready-button"
@@ -20,9 +20,18 @@
 
 <style>
   .container {
-    background-color: orchid;
-    height: 600px;
+    margin-top: 63px;
+    box-sizing: border-box;
+    background-color: #f4aef5;
+    height: 400px;
     width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  h2 {
+    margin: 0;
   }
   .ready-button:disabled {
     opacity: 0.5;
@@ -32,5 +41,6 @@
   }
   .ready-button {
     background-color: aquamarine;
+    width: 150px;
   }
 </style>

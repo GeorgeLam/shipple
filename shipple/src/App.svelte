@@ -3,13 +3,14 @@
     stateReducer,
     PREGAME,
     READY_TO_PLAY,
+    GAME,
     WINNER,
   } from "./lib/stores.js";
   import Grid from "./lib/Grid.svelte";
   import Divider from "./lib/Divider.svelte";
   import Instructions from "./lib/Instructions.svelte";
   import Winning from "./lib/Winning.svelte";
-
+  import Attack from "./lib/Attack.svelte";
   import { initialiseWebsocket } from "./lib/socket";
   import { onMount } from "svelte";
 
@@ -135,6 +136,10 @@
     <Winning />
   {/if}
 
+  {#if $stateReducer.gamePhase === GAME}
+    <Attack />
+  {/if}
+
   <div class="container">
     <Grid status={$stateReducer.gameState.player1} title={"Your Grid"} />
     <Divider />
@@ -144,6 +149,7 @@
       <Grid status={$stateReducer.gameState.player2} title={"Enemy's Grid"} />
     {/if}
   </div>
+
   <button class="reset" on:click={stateReducer.reset}>Play again</button>
   <button
     class="reset"
