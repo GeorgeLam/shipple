@@ -10,6 +10,7 @@ const initialState = {
   gamePhase: PREGAME,
   battleshipCells: [],
   gameState: null,
+  isWinner: false,
 };
 
 const isAdjacent = (first, second) => {
@@ -46,7 +47,11 @@ const createState = () => {
     startGame: () =>
       update((state) => {
         // TODO: initialise websocket
-        return { ...state, gamePhase: GAME };
+        return { ...state, gamePhase: WINNER };
+      }),
+    declareWinner: (isWinner) =>
+      update((state) => {
+        return { ...state, gamePhase: WINNER, isWinner };
       }),
     reset: () => set(initialState),
   };

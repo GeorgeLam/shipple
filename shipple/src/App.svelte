@@ -1,12 +1,22 @@
 <script>
-  import { stateReducer, PREGAME, READY_TO_PLAY } from "./lib/stores.js";
+  import {
+    stateReducer,
+    PREGAME,
+    READY_TO_PLAY,
+    WINNER,
+  } from "./lib/stores.js";
   import Grid from "./lib/Grid.svelte";
   import Divider from "./lib/Divider.svelte";
   import Instructions from "./lib/Instructions.svelte";
+  import Winning from "./lib/Winning.svelte";
 </script>
 
 <main>
   <h1>Shipple</h1>
+
+  {#if $stateReducer.gamePhase === WINNER}
+    <Winning />
+  {/if}
 
   <div class="container">
     <Grid />
