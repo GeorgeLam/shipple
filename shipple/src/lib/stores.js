@@ -89,6 +89,9 @@ const createState = () => {
     subscribe,
     placeShip: (coord) =>
       update((state) => {
+        if (state.gamePhase !== PREGAME) {
+          return state;
+        }
         if (state.battleshipCells[0] === undefined) {
           return { ...state, battleshipCells: [coord] };
         } else {
