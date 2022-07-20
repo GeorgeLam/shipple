@@ -1,6 +1,9 @@
 <script>
   import Cell from "./Cell.svelte";
 
+  export let state;
+  export let title;
+
   const GRID_SIZE = 4;
 
   let grid = [];
@@ -12,10 +15,13 @@
   }
 </script>
 
-<div class="grid">
-  {#each grid as cell}
-    <Cell coordinate={cell} />
-  {/each}
+<div class="grid-container">
+  <h2>{title}</h2>
+  <div class="grid">
+    {#each grid as cell}
+      <Cell coordinate={cell} state={state[cell[0]][cell[1]]} />
+    {/each}
+  </div>
 </div>
 
 <style>

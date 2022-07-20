@@ -9,6 +9,68 @@
   import Divider from "./lib/Divider.svelte";
   import Instructions from "./lib/Instructions.svelte";
   import Winning from "./lib/Winning.svelte";
+
+  import { initialiseWebsocket } from "./lib/socket";
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    initialiseWebsocket();
+  });
+
+  const mockState = {
+    player1: {
+      "1": {
+        "1": { hit: true, ship: false },
+        "2": { hit: false, ship: true },
+        "3": { hit: false, ship: true },
+        "4": { hit: false, ship: false },
+      },
+      "2": {
+        "1": { hit: true, ship: false },
+        "2": { hit: false, ship: false },
+        "3": { hit: false, ship: false },
+        "4": { hit: false, ship: false },
+      },
+      "3": {
+        "1": { hit: true, ship: false },
+        "2": { hit: false, ship: false },
+        "3": { hit: false, ship: false },
+        "4": { hit: false, ship: false },
+      },
+      "4": {
+        "1": { hit: true, ship: false },
+        "2": { hit: false, ship: false },
+        "3": { hit: false, ship: false },
+        "4": { hit: false, ship: false },
+      },
+    },
+    player2: {
+      "1": {
+        "1": { hit: true, ship: true },
+        "2": { hit: false, ship: true },
+        "3": { hit: false, ship: true },
+        "4": { hit: false, ship: false },
+      },
+      "2": {
+        "1": { hit: true, ship: false },
+        "2": { hit: false, ship: false },
+        "3": { hit: false, ship: false },
+        "4": { hit: false, ship: false },
+      },
+      "3": {
+        "1": { hit: true, ship: false },
+        "2": { hit: false, ship: false },
+        "3": { hit: false, ship: false },
+        "4": { hit: false, ship: false },
+      },
+      "4": {
+        "1": { hit: true, ship: false },
+        "2": { hit: false, ship: false },
+        "3": { hit: false, ship: false },
+        "4": { hit: false, ship: false },
+      },
+    },
+  };
 </script>
 
 <main>
@@ -19,12 +81,12 @@
   {/if}
 
   <div class="container">
-    <Grid />
+    <Grid state={mockState.player1} title={"Your Grid"} />
     <Divider />
     {#if $stateReducer.gamePhase === PREGAME || $stateReducer.gamePhase === READY_TO_PLAY}
       <Instructions />
     {:else}
-      <Grid />
+      <Grid state={mockState.player2} title={"Enemy's Grid"} />
     {/if}
   </div>
   <button class="reset" on:click={stateReducer.reset}>Play again</button>

@@ -11,6 +11,7 @@ const initialState = {
   battleshipCells: [],
   gameState: null,
   isWinner: true,
+  websocket: null,
 };
 
 const isAdjacent = (first, second) => {
@@ -24,7 +25,7 @@ const isAdjacent = (first, second) => {
 };
 
 const createState = () => {
-  const { subscribe, set, update } = writable(initialState);
+  const { subscribe, set, update, websocket } = writable(initialState);
 
   return {
     subscribe,
@@ -54,6 +55,7 @@ const createState = () => {
         return { ...state, gamePhase: WINNER, isWinner };
       }),
     reset: () => set(initialState),
+    websocket,
   };
 };
 

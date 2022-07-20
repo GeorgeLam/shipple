@@ -46,7 +46,6 @@
 </script>
 
 <div class="cell" on:click={() => clickHandler(coordinate)}>
-  <!-- {coordinate} -->
   {#if state.battleshipCells.includes(coordinate)}
     <div class={`ship ${getClasses(coordinate, state.battleshipCells)}`} />
   {/if}
