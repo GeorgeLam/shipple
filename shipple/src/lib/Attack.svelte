@@ -5,7 +5,7 @@
 
   setTimeout(() => {
     visible = false;
-  }, 1000);
+  }, 800);
 </script>
 
 {#if visible}
